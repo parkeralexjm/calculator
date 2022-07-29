@@ -1,18 +1,44 @@
 .main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.calculator {
     display:flex;
     flex-direction: column;
     align-content: center;
+    width: 250px;
+    height: 400px;
+    background-color: lightgrey;
+    padding: 10px;
+    border-radius: 10px;
 }
 
 .title {
     display:flex;
+    justify-content: center;
+    border: 2px solid black;
 }
 
 .display {
     display: flex;
+    border: 2px solid black;
+    margin: 5%;
+    padding: 0 5%;
+    background-color: white;
 }
 
-.buttons {
+.keyboard {
     display: flex;
     flex-flow: row wrap;
+    justify-content: center;
+}
+
+.button {
+    font-size: 24px;
+    width: 60px;
+    height: 45px;
+    margin: 10px;
 }
