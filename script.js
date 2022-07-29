@@ -57,7 +57,7 @@ function reportOutput () {
         document.getElementById("calcDisplay").innerHTML = output
     } else {
         document.getElementById("calcDisplay").innerHTML = "You cannot divide by zero..."
-        output = 0;
+        clearAll();
     }  
 }
 
@@ -162,6 +162,10 @@ let buttonList = document.querySelectorAll("input");
                 }
                 // If the input button is "="
                 else {
+                    if (tempInput == "" || tempInputOne == "" || tempOperator == "") {
+                        document.getElementById("calcDisplay").innerHTML = "Please enter two numbers"
+                    }
+                    else {
                     output = operate(Number(tempInputOne), Number(tempInput), tempOperator);
                     reportOutput();
                     console.log("tempInput= " + tempInput)
@@ -169,7 +173,8 @@ let buttonList = document.querySelectorAll("input");
                     console.log("tempOperator= " + tempOperator)
                     console.log("output:" + output)
                     clearAll();
-                    tempInputOne = output;
+                    tempInput = output;
+                    }
                 }
             } else {
             // If input is a number
