@@ -51,7 +51,7 @@ function clearAll () {
 
 function reportOutput () {
     if (isFinite(output)) {
-        document.getElementById("calcDisplay").innerHTML = output
+        document.getElementById("calcDisplay").innerHTML = Math.round(100000000000000*output)/100000000000000
     } else {
         document.getElementById("calcDisplay").innerHTML = "You cannot divide by zero..."
         clearAll();
@@ -174,19 +174,19 @@ let buttonList = document.querySelectorAll("input");
                 // If the input is "." add a decimal point to the number
                 else if (e.target.value == ".") {
                     tempInput += ".";
-                    document.getElementById("calcDisplay").innerHTML = tempInput
+                    document.getElementById("calcDisplay").innerHTML = Math.round(100000000000000*tempInput)/10000000000000
                 }
                 // If the input is "Delete"
                 else {
                     // If the current number is 2 or above, remove the last digit
                     if (tempInput.length >= 2) {
                     tempInput = tempInput.slice(0, -1);
-                    document.getElementById("calcDisplay").innerHTML = tempInput
+                    document.getElementById("calcDisplay").innerHTML = Math.round(100000000000000*tempInput)/100000000000000
                     } 
                     // If the current number has 1 digit, change it to zero
                     else if (tempInput.length == 1) {
                         tempInput = 0;
-                        document.getElementById("calcDisplay").innerHTML = tempInput
+                        document.getElementById("calcDisplay").innerHTML = Math.round(100000000000000*tempInput)/100000000000000
                     }
                 }
             } else {
@@ -197,7 +197,7 @@ let buttonList = document.querySelectorAll("input");
                 output = 0;
             }
             tempInput += e.target.value;
-            document.getElementById("calcDisplay").innerHTML = tempInput
+            document.getElementById("calcDisplay").innerHTML = Math.round(100000000000000*tempInput)/100000000000000
             }
         }) 
     });

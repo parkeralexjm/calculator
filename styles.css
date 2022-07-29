@@ -51,8 +51,8 @@
 }
 
 .extraKeys > input {
-    height: 22px;
-    width: 46%;
+    height: 24px;
+    width: 115px;
     margin: 5px;
     font-size: 15px;
 }
@@ -62,4 +62,6 @@
     width: 52px;
     margin: 5px;
     font-size: 24px;
+    background-color: lightsteelblue;
+    border-radius: 5px;
 }
