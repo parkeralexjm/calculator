@@ -55,6 +55,7 @@ function reportOutput () {
     } else {
         document.getElementById("calcDisplay").innerHTML = "You cannot divide by zero..."
         clearAll();
+        output = "";
     }  
 }
 
@@ -66,8 +67,8 @@ let buttonList = document.querySelectorAll("input");
         element.addEventListener("click", function(e) {
             // If input is NaN
             if (isNaN(Number(e.target.value))) {
-                // If the input value is "AC" then clear the variables and reset the calculator
-                if (e.target.value == "AC") {
+                // If the input value is "Clear" then clear the variables and reset the calculator
+                if (e.target.value == "Clear") {
                     clearAll();
                     document.getElementById("calcDisplay").innerHTML = 0
                     output = 0;
@@ -88,6 +89,7 @@ let buttonList = document.querySelectorAll("input");
                     else {
                         tempInputOne = tempInput; 
                         tempOperator = "add";
+                        output = 0;
                         reportOutput();
                         tempInput = "";
                     }
@@ -108,6 +110,7 @@ let buttonList = document.querySelectorAll("input");
                     else {
                         tempInputOne = tempInput; 
                         tempOperator = "subtract";
+                        output = 0;
                         reportOutput();
                         tempInput = "";
                     }
@@ -128,6 +131,7 @@ let buttonList = document.querySelectorAll("input");
                     else {
                         tempInputOne = tempInput; 
                         tempOperator = "multiply";
+                        output = 0;
                         reportOutput();
                         tempInput = "";
                     }
@@ -149,6 +153,7 @@ let buttonList = document.querySelectorAll("input");
                         else {
                             tempInputOne = tempInput; 
                             tempOperator = "divide";
+                            output = 0;
                             reportOutput();
                             tempInput = "";
                         }
@@ -157,20 +162,40 @@ let buttonList = document.querySelectorAll("input");
                 else if (e.target.value == "=") {
                     if (tempInput == "" || tempInputOne == "" || tempOperator == "") {
                         document.getElementById("calcDisplay").innerHTML = "Please enter two numbers"
+                        clearAll;
                     }
                     else {
                     output = operate(Number(tempInputOne), Number(tempInput), tempOperator);
                     reportOutput();
-                    clearAll();
                     tempInput = output;
+                    tempOperator = "equals"
                     }
                 }
-                // If the input button is "."
-
-                // If the input button is "\"
+                // If the input is "." add a decimal point to the number
+                else if (e.target.value == ".") {
+                    tempInput += ".";
+                    document.getElementById("calcDisplay").innerHTML = tempInput
+                }
+                // If the input is "Delete"
+                else {
+                    // If the current number is 2 or above, remove the last digit
+                    if (tempInput.length >= 2) {
+                    tempInput = tempInput.slice(0, -1);
+                    document.getElementById("calcDisplay").innerHTML = tempInput
+                    } 
+                    // If the current number has 1 digit, change it to zero
+                    else if (tempInput.length == 1) {
+                        tempInput = 0;
+                        document.getElementById("calcDisplay").innerHTML = tempInput
+                    }
+                }
             } else {
             // If input is a number
             // Concatenate the value to tempInput
+            if (tempOperator == "equals") {
+                clearAll();
+                output = 0;
+            }
             tempInput += e.target.value;
             document.getElementById("calcDisplay").innerHTML = tempInput
             }
