@@ -42,3 +42,30 @@ const operate = function(a, b, operator) {
     }
     
 };
+
+// Create a function to store the number dialed in by the user
+var tempInput = "";
+
+// Select all inputs from the DOM
+let buttonList = document.querySelectorAll("input");
+    // For each input element do the following function
+    buttonList.forEach(element => { 
+        // When the input is clicked perform the following function
+        element.addEventListener("click", function(e) {
+            // If input is NaN
+            if (isNaN(Number(e.target.value))) {
+                // If the input value is "AC" then clear the tempInput variable and reset the calculator
+                if (e.target.value == "AC") {
+                    tempInput = ""
+                    document.getElementById("calcDisplay").innerHTML = 0;
+                }
+            } else {
+            // If input is a number
+            // Concatenate the value to tempInput
+            tempInput += e.target.value;
+            document.getElementById("calcDisplay").innerHTML = tempInput
+            console.log(tempInput);
+            }
+            
+        }) 
+    });
