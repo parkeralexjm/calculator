@@ -1,6 +1,5 @@
 // For each function accept two arguments and apply the operator according to
 // the function title.
-
 const add = function() {
     return (arguments[0] + arguments[1])
 };
@@ -35,9 +34,7 @@ const operate = function(a, b, operator) {
     // If the operator is divide then perform this action
     else {
         return divide (a, b);
-    } 
-
-    
+    }    
 };
 
 // Create a function to store the number dialed in by the user
@@ -67,10 +64,6 @@ let buttonList = document.querySelectorAll("input");
     buttonList.forEach(element => { 
         // When the input is clicked perform the following function
         element.addEventListener("click", function(e) {
-            console.log("tempInput= " + tempInput)
-            console.log("tempInputOne= " + tempInputOne)
-            console.log("tempOperator= " + tempOperator)
-            
             // If input is NaN
             if (isNaN(Number(e.target.value))) {
                 // If the input value is "AC" then clear the variables and reset the calculator
@@ -161,21 +154,20 @@ let buttonList = document.querySelectorAll("input");
                         }
                 }
                 // If the input button is "="
-                else {
+                else if (e.target.value == "=") {
                     if (tempInput == "" || tempInputOne == "" || tempOperator == "") {
                         document.getElementById("calcDisplay").innerHTML = "Please enter two numbers"
                     }
                     else {
                     output = operate(Number(tempInputOne), Number(tempInput), tempOperator);
                     reportOutput();
-                    console.log("tempInput= " + tempInput)
-                    console.log("tempInputOne= " + tempInputOne)
-                    console.log("tempOperator= " + tempOperator)
-                    console.log("output:" + output)
                     clearAll();
                     tempInput = output;
                     }
                 }
+                // If the input button is "."
+
+                // If the input button is "\"
             } else {
             // If input is a number
             // Concatenate the value to tempInput
