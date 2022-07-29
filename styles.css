@@ -1,0 +1,18 @@
+.main {
+    display:flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.title {
+    display:flex;
+}
+
+.display {
+    display: flex;
+}
+
+.buttons {
+    display: flex;
+    flex-flow: row wrap;
+}
