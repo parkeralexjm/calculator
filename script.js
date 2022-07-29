@@ -3,15 +3,12 @@
 const add = function() {
     return (arguments[0] + arguments[1])
 };
-
 const subtract = function() {
 	return (arguments[0] - arguments[1])
 };
-
 const multiply = function(array) {
 	return (arguments[0] * arguments[1])
 };
-
 const divide = function() {
     return (arguments[0] / arguments[1])
 };
@@ -43,12 +40,14 @@ var tempInputOne = "";
 var tempOperator = "";
 var output = 0;
 
+// Function to clear the three variables when needed
 function clearAll () {
     tempInput = "";
     tempInputOne = "";
     tempOperator = "";
 }
 
+// Function to output rounded numbers and to intervene when the number is Infinity
 function reportOutput () {
     if (isFinite(output)) {
         document.getElementById("calcDisplay").innerHTML = Math.round(100000000000000*output)/100000000000000
