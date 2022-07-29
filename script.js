@@ -15,7 +15,7 @@ const multiply = function(array) {
 
 const divide = function() {
     return (arguments[0] / arguments[1])
-}
+};
 
 // Function takes two numbers and an operator as input then calls the 
 // appropriate function.
@@ -35,7 +35,8 @@ const operate = function(a, b, operator) {
     // If the operator is divide then perform this action
     else {
         return divide (a, b);
-    }
+    } 
+
     
 };
 
@@ -51,12 +52,25 @@ function clearAll () {
     tempOperator = "";
 }
 
+function reportOutput () {
+    if (isFinite(output)) {
+        document.getElementById("calcDisplay").innerHTML = output
+    } else {
+        document.getElementById("calcDisplay").innerHTML = "You cannot divide by zero..."
+        output = 0;
+    }  
+}
+
 // Select all inputs from the DOM
 let buttonList = document.querySelectorAll("input");
     // For each input element do the following function
     buttonList.forEach(element => { 
         // When the input is clicked perform the following function
         element.addEventListener("click", function(e) {
+            console.log("tempInput= " + tempInput)
+            console.log("tempInputOne= " + tempInputOne)
+            console.log("tempOperator= " + tempOperator)
+            
             // If input is NaN
             if (isNaN(Number(e.target.value))) {
                 // If the input value is "AC" then clear the variables and reset the calculator
@@ -71,7 +85,7 @@ let buttonList = document.querySelectorAll("input");
                     // store the new value as tempInput
                     if (tempInputOne !== "") {
                         output = operate(Number(tempInputOne), Number(tempInput), tempOperator);
-                        document.getElementById("calcDisplay").innerHTML = output;
+                        reportOutput();
                         clearAll();
                         tempInputOne = output;
                         tempOperator = "add"
@@ -81,7 +95,7 @@ let buttonList = document.querySelectorAll("input");
                     else {
                         tempInputOne = tempInput; 
                         tempOperator = "add";
-                        document.getElementById("calcDisplay").innerHTML = output;
+                        reportOutput();
                         tempInput = "";
                     }
                 }
@@ -91,7 +105,7 @@ let buttonList = document.querySelectorAll("input");
                     // store the new value as tempInput
                     if (tempInputOne !== "") {
                         output = operate(Number(tempInputOne), Number(tempInput), tempOperator);
-                        document.getElementById("calcDisplay").innerHTML = output;
+                        reportOutput();
                         clearAll();
                         tempInputOne = output;
                         tempOperator = "subtract"
@@ -101,7 +115,7 @@ let buttonList = document.querySelectorAll("input");
                     else {
                         tempInputOne = tempInput; 
                         tempOperator = "subtract";
-                        document.getElementById("calcDisplay").innerHTML = output;
+                        reportOutput();
                         tempInput = "";
                     }
                 }
@@ -111,7 +125,7 @@ let buttonList = document.querySelectorAll("input");
                     // store the new value as tempInput
                     if (tempInputOne !== "") {
                         output = operate(Number(tempInputOne), Number(tempInput), tempOperator);
-                        document.getElementById("calcDisplay").innerHTML = output;
+                        reportOutput();
                         clearAll();
                         tempInputOne = output;
                         tempOperator = "multiply"
@@ -121,45 +135,48 @@ let buttonList = document.querySelectorAll("input");
                     else {
                         tempInputOne = tempInput; 
                         tempOperator = "multiply";
-                        document.getElementById("calcDisplay").innerHTML = output;
+                        reportOutput();
                         tempInput = "";
                     }
                 }
                 // If the input button is '÷'
                 else if (e.target.value == "÷") {
-                    // If tempInputOne has a value, perform the previous function then 
-                    // store the new value as tempInput
-                    if (tempInputOne !== "") {
-                        output = operate(Number(tempInputOne), Number(tempInput), tempOperator);
-                        document.getElementById("calcDisplay").innerHTML = output;
-                        clearAll();
-                        tempInputOne = output;
-                        tempOperator = "divide"
-                    } 
-                    // If tempInputOne does not have a value, store tempInput and operator
-                    // and wait for a new input
-                    else {
-                        tempInputOne = tempInput; 
-                        tempOperator = "divide";
-                        document.getElementById("calcDisplay").innerHTML = output;
-                        tempInput = "";
-                    }
+                        // If tempInputOne has a value, perform the previous function then 
+                        // store the new value as tempInput
+                        if (tempInputOne !== "") {
+                            output = operate(Number(tempInputOne), Number(tempInput), tempOperator);
+                            console.log(output)
+                            reportOutput();
+                            clearAll();
+                            tempInputOne = output;
+                            tempOperator = "divide"
+                        } 
+                        // If tempInputOne does not have a value, store tempInput and operator
+                        // and wait for a new input
+                        else {
+                            tempInputOne = tempInput; 
+                            tempOperator = "divide";
+                            reportOutput();
+                            tempInput = "";
+                        }
                 }
                 // If the input button is "="
                 else {
                     output = operate(Number(tempInputOne), Number(tempInput), tempOperator);
+                    reportOutput();
+                    console.log("tempInput= " + tempInput)
+                    console.log("tempInputOne= " + tempInputOne)
+                    console.log("tempOperator= " + tempOperator)
+                    console.log("output:" + output)
                     clearAll();
                     tempInputOne = output;
-                    document.getElementById("calcDisplay").innerHTML = output;
                 }
             } else {
             // If input is a number
             // Concatenate the value to tempInput
             tempInput += e.target.value;
             document.getElementById("calcDisplay").innerHTML = tempInput
-            console.log(tempInput)
             }
-            console.log(output)
         }) 
     });
 
