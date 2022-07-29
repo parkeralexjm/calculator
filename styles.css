@@ -2,7 +2,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px;
 }
 
 .calculator {
@@ -21,6 +20,7 @@
     display:flex;
     justify-content: center;
     border: 2px solid black;
+    margin: 0 2%;
 }
 
 .display {
@@ -38,7 +38,11 @@
 }
 
 #delete {
-    background-color: aquamarine;
+    background-color: lightcoral;
+}
+
+#clear {
+    background-color: lightcyan;
 }
 
 .extraKeys {
